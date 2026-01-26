@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "mWDQhPNjpdg=",
+  "dgSpecHash": "AlkscV1WfHM=",
   "success": true,
-  "projectFilePath": "C:\\Users\\serca\\Documents\\GitHub\\CoffeShop\\CoffeShop.Models\\CoffeShop.Models.csproj",
+  "projectFilePath": "C:\\Users\\serca\\Documents\\GitHub\\CoffeShop\\CoffeeShop\\CoffeShop\\CoffeShop.Models\\CoffeShop.Models.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\serca\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\9.0.0\\microsoft.extensions.configuration.abstractions.9.0.0.nupkg.sha512",
     "C:\\Users\\serca\\.nuget\\packages\\microsoft.extensions.configuration.binder\\9.0.0\\microsoft.extensions.configuration.binder.9.0.0.nupkg.sha512",

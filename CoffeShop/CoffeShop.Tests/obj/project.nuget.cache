@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3P2soErl0tU=",
+  "dgSpecHash": "BAR8e9fZ9Bg=",
   "success": true,
-  "projectFilePath": "C:\\Users\\serca\\Documents\\GitHub\\CoffeShop\\CoffeShop.Tests\\CoffeShop.Tests.csproj",
+  "projectFilePath": "C:\\Users\\serca\\Documents\\GitHub\\CoffeShop\\CoffeeShop\\CoffeShop\\CoffeShop.Tests\\CoffeShop.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\serca\\.nuget\\packages\\awssdk.core\\3.7.100.14\\awssdk.core.3.7.100.14.nupkg.sha512",
     "C:\\Users\\serca\\.nuget\\packages\\awssdk.securitytoken\\3.7.100.14\\awssdk.securitytoken.3.7.100.14.nupkg.sha512",

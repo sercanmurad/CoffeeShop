@@ -10,3 +10,16 @@ C:\Users\serca\Documents\GitHub\CoffeShop\CoffeShop.Models\obj\Debug\net9.0\Coff
 C:\Users\serca\Documents\GitHub\CoffeShop\CoffeShop.Models\obj\Debug\net9.0\refint\CoffeShop.Models.dll
 C:\Users\serca\Documents\GitHub\CoffeShop\CoffeShop.Models\obj\Debug\net9.0\CoffeShop.Models.pdb
 C:\Users\serca\Documents\GitHub\CoffeShop\CoffeShop.Models\obj\Debug\net9.0\ref\CoffeShop.Models.dll
+C:\Users\serca\Documents\GitHub\CoffeShop\CoffeeShop\CoffeShop\CoffeShop.Models\bin\Debug\net9.0\CoffeShop.Models.deps.json
+C:\Users\serca\Documents\GitHub\CoffeShop\CoffeeShop\CoffeShop\CoffeShop.Models\bin\Debug\net9.0\CoffeShop.Models.dll
+C:\Users\serca\Documents\GitHub\CoffeShop\CoffeeShop\CoffeShop\CoffeShop.Models\bin\Debug\net9.0\CoffeShop.Models.pdb
+C:\Users\serca\Documents\GitHub\CoffeShop\CoffeeShop\CoffeShop\CoffeShop.Models\obj\Debug\net9.0\CoffeShop.Models.csproj.AssemblyReference.cache
+C:\Users\serca\Documents\GitHub\CoffeShop\CoffeeShop\CoffeShop\CoffeShop.Models\obj\Debug\net9.0\CoffeShop.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\serca\Documents\GitHub\CoffeShop\CoffeeShop\CoffeShop\CoffeShop.Models\obj\Debug\net9.0\CoffeShop.Models.AssemblyInfoInputs.cache
+C:\Users\serca\Documents\GitHub\CoffeShop\CoffeeShop\CoffeShop\CoffeShop.Models\obj\Debug\net9.0\CoffeShop.Models.AssemblyInfo.cs
+C:\Users\serca\Documents\GitHub\CoffeShop\CoffeeShop\CoffeShop\CoffeShop.Models\obj\Debug\net9.0\CoffeShop.Models.csproj.CoreCompileInputs.cache
+C:\Users\serca\Documents\GitHub\CoffeShop\CoffeeShop\CoffeShop\CoffeShop.Models\obj\Debug\net9.0\CoffeShop.Models.sourcelink.json
+C:\Users\serca\Documents\GitHub\CoffeShop\CoffeeShop\CoffeShop\CoffeShop.Models\obj\Debug\net9.0\CoffeShop.Models.dll
+C:\Users\serca\Documents\GitHub\CoffeShop\CoffeeShop\CoffeShop\CoffeShop.Models\obj\Debug\net9.0\refint\CoffeShop.Models.dll
+C:\Users\serca\Documents\GitHub\CoffeShop\CoffeeShop\CoffeShop\CoffeShop.Models\obj\Debug\net9.0\CoffeShop.Models.pdb
+C:\Users\serca\Documents\GitHub\CoffeShop\CoffeeShop\CoffeShop\CoffeShop.Models\obj\Debug\net9.0\ref\CoffeShop.Models.dll

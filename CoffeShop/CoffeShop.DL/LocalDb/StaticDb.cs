@@ -8,7 +8,7 @@ namespace CoffeShop.DL.LocalDb
         {
             new Coffee { Id = Guid.NewGuid(), Name = "Espresso", RoastYear = 2023, BasePrice = 3.50m },
             new Coffee { Id = Guid.NewGuid(), Name = "Cappuccino", RoastYear = 2023, BasePrice = 4.20m },
-            new Coffee { Id = Guid.NewGuid(), Name = "Latte", RoastYear = 2023, BasePrice = 4.50m }
+            new Coffee { Id = Guid.NewGuid(), Name = "Latte", RoastYear = 2021, BasePrice = 4.50m }
         };
 
         public static List<Customer> Customers =
@@ -17,14 +17,14 @@ namespace CoffeShop.DL.LocalDb
                 new Customer()
                 {
                     Id = Guid.NewGuid(),
-                    Name = "John Doe",
-                    Email = "jd@xxx.com"
+                    Name = "Ivan Ivanov",
+                    Email = "iv@xxx.com"
                 },
                 new Customer()
                 {
                     Id = Guid.NewGuid(),
-                    Name = "Stamat Genov",
-                    Email = "sg@xxx.com"
+                    Name = "Sercan Murad",
+                    Email = "sm@xxx.com"
                 }
             };
     }

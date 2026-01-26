@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\serca\\Documents\\GitHub\\CoffeShop\\CoffeShop.Models\\CoffeShop.Models.csproj": {}
+    "C:\\Users\\serca\\Documents\\GitHub\\CoffeShop\\CoffeeShop\\CoffeShop\\CoffeShop.Models\\CoffeShop.Models.csproj": {}
   },
   "projects": {
-    "C:\\Users\\serca\\Documents\\GitHub\\CoffeShop\\CoffeShop.Models\\CoffeShop.Models.csproj": {
+    "C:\\Users\\serca\\Documents\\GitHub\\CoffeShop\\CoffeeShop\\CoffeShop\\CoffeShop.Models\\CoffeShop.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\serca\\Documents\\GitHub\\CoffeShop\\CoffeShop.Models\\CoffeShop.Models.csproj",
+        "projectUniqueName": "C:\\Users\\serca\\Documents\\GitHub\\CoffeShop\\CoffeeShop\\CoffeShop\\CoffeShop.Models\\CoffeShop.Models.csproj",
         "projectName": "CoffeShop.Models",
-        "projectPath": "C:\\Users\\serca\\Documents\\GitHub\\CoffeShop\\CoffeShop.Models\\CoffeShop.Models.csproj",
+        "projectPath": "C:\\Users\\serca\\Documents\\GitHub\\CoffeShop\\CoffeeShop\\CoffeShop\\CoffeShop.Models\\CoffeShop.Models.csproj",
         "packagesPath": "C:\\Users\\serca\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\serca\\Documents\\GitHub\\CoffeShop\\CoffeShop.Models\\obj\\",
+        "outputPath": "C:\\Users\\serca\\Documents\\GitHub\\CoffeShop\\CoffeeShop\\CoffeShop\\CoffeShop.Models\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
