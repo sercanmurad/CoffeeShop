@@ -1,0 +1,878 @@
+<!doctype html>
+<html lang="bg">
+<head>
+    <meta charset="utf-8">
+    <title>Калкулатор за възвръщаемост на вендинг автомат</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        :root {
+            --bg-main: #0f172a;
+            --bg-card: #020617;
+            --bg-input: #020617;
+            --accent: #f97316;
+            --accent-soft: rgba(249, 115, 22, 0.12);
+            --accent-strong: rgba(249, 115, 22, 0.2);
+            --border-subtle: rgba(148, 163, 184, 0.3);
+            --text-main: #e5e7eb;
+            --text-muted: #9ca3af;
+            --error: #f97373;
+            --success: #4ade80;
+            --radius-lg: 18px;
+            --radius-md: 12px;
+            --shadow-soft: 0 22px 45px rgba(15, 23, 42, 0.9);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top left, #1f2937 0, #020617 45%, #000 100%);
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .page {
+            width: 100%;
+            max-width: 1080px;
+            padding: 24px;
+        }
+
+        .card {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(2, 6, 23, 0.98));
+            border-radius: 26px;
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            box-shadow: var(--shadow-soft);
+            padding: 24px 24px 20px;
+            backdrop-filter: blur(18px);
+        }
+
+        @media (min-width: 768px) {
+            .card {
+                padding: 28px 32px 24px;
+            }
+        }
+
+        .header {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+        }
+
+        .title-block {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .logo-pill {
+            width: 40px;
+            height: 40px;
+            border-radius: 999px;
+            background: radial-gradient(circle at 30% 20%, #fbbf24, #f97316 40%, #b91c1c 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 0 1px rgba(248, 250, 252, 0.12),
+                        0 20px 40px rgba(0, 0, 0, 0.8);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-pill::after {
+            content: "";
+            position: absolute;
+            width: 120%;
+            height: 120%;
+            top: -50%;
+            left: -40%;
+            background: radial-gradient(circle at 0 0, rgba(248, 250, 252, 0.35), transparent 55%);
+            transform: rotate(-12deg);
+            opacity: 0.9;
+        }
+
+        .logo-steam {
+            position: relative;
+            width: 18px;
+            height: 18px;
+            border-radius: 6px;
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid rgba(15, 23, 42, 0.7);
+            box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.25);
+        }
+
+        .logo-steam::before,
+        .logo-steam::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            width: 3px;
+            height: 14px;
+            border-radius: 999px;
+            background: linear-gradient(to top, rgba(248, 250, 252, 0.01), rgba(248, 250, 252, 0.55));
+            transform: translateX(-50%);
+            top: -16px;
+            filter: blur(0.2px);
+        }
+
+        .logo-steam::after {
+            left: 35%;
+            height: 12px;
+            opacity: 0.8;
+        }
+
+        .title-main {
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+        }
+
+        .title-sub {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        .badge {
+            font-size: 0.72rem;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: rgba(15, 23, 42, 0.8);
+            color: var(--text-muted);
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .badge-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            background: rgba(52, 211, 153, 0.3);
+            box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.4),
+                        0 0 0 5px rgba(5, 150, 105, 0.15);
+        }
+
+        .layout {
+            display: grid;
+            gap: 18px;
+        }
+
+        @media (min-width: 900px) {
+            .layout {
+                grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
+                gap: 22px;
+            }
+        }
+
+        .panel {
+            background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.32), rgba(15, 23, 42, 0.96));
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(31, 41, 55, 0.9);
+            padding: 16px 16px 14px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .panel::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at top left, rgba(249, 115, 22, 0.06), transparent 55%),
+                radial-gradient(circle at bottom right, rgba(15, 118, 110, 0.09), transparent 60%);
+            opacity: 0.9;
+            pointer-events: none;
+        }
+
+        .panel-inner {
+            position: relative;
+            z-index: 1;
+        }
+
+        .panel-title {
+            font-size: 0.88rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .panel-sub {
+            font-size: 0.74rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: 10px 14px;
+        }
+
+        @media (min-width: 600px) {
+            .form-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .label-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 4px;
+        }
+
+        label {
+            font-size: 0.78rem;
+            color: var(--text-main);
+        }
+
+        .label-hint {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+
+        input[type="number"] {
+            width: 100%;
+            border-radius: 999px;
+            border: 1px solid rgba(51, 65, 85, 0.9);
+            background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.7), #020617);
+            color: var(--text-main);
+            padding: 7px 10px;
+            font-size: 0.8rem;
+            outline: none;
+            transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease, transform 0.05s ease;
+        }
+
+        input[type="number"]:focus {
+            border-color: rgba(249, 115, 22, 0.9);
+            box-shadow: 0 0 0 1px rgba(249, 115, 22, 0.7),
+                        0 0 0 9px rgba(249, 115, 22, 0.13);
+            background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.6), #020617);
+            transform: translateY(-0.5px);
+        }
+
+        input[type="number"]::placeholder {
+            color: rgba(148, 163, 184, 0.65);
+        }
+
+        .suffix {
+            font-size: 0.72rem;
+            color: rgba(148, 163, 184, 0.9);
+            margin-left: 4px;
+        }
+
+        .inline-input {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .btn {
+            border-radius: 999px;
+            padding: 7px 14px;
+            font-size: 0.78rem;
+            border: 1px solid transparent;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: transform 0.06s ease, box-shadow 0.12s ease, background 0.12s ease, border-color 0.12s ease;
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #f97316, #ea580c);
+            border-color: rgba(248, 250, 252, 0.1);
+            color: #0b1120;
+            box-shadow: 0 14px 30px rgba(248, 113, 22, 0.45);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 18px 40px rgba(248, 113, 22, 0.6);
+        }
+
+        .btn-ghost {
+            background: rgba(15, 23, 42, 0.85);
+            border-color: rgba(148, 163, 184, 0.4);
+            color: var(--text-muted);
+        }
+
+        .btn-ghost:hover {
+            transform: translateY(-1px);
+            border-color: rgba(248, 250, 252, 0.55);
+            background: rgba(15, 23, 42, 1);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+            box-shadow: none;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        @media (min-width: 700px) {
+            .results-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+
+        .metric {
+            position: relative;
+            border-radius: var(--radius-md);
+            padding: 9px 10px 8px;
+            background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.98));
+            border: 1px solid rgba(31, 41, 55, 0.95);
+            overflow: hidden;
+        }
+
+        .metric::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at top left, rgba(248, 250, 252, 0.04), transparent 55%),
+                linear-gradient(to bottom right, rgba(15, 23, 42, 0.2), transparent 60%);
+            opacity: 0.9;
+            pointer-events: none;
+        }
+
+        .metric-inner {
+            position: relative;
+            z-index: 1;
+        }
+
+        .metric-label {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+
+        .metric-value {
+            font-size: 0.98rem;
+            font-weight: 600;
+            letter-spacing: 0.01em;
+        }
+
+        .metric-tag {
+            font-size: 0.68rem;
+            padding: 2px 7px;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.4);
+            color: var(--text-muted);
+        }
+
+        .metric-row-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 1px;
+        }
+
+        .metric-accent {
+            color: #fed7aa;
+        }
+
+        .metric-profit-positive {
+            color: #bbf7d0;
+        }
+
+        .metric-profit-negative {
+            color: #fecaca;
+        }
+
+        .pill-strip {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 8px;
+        }
+
+        .pill {
+            font-size: 0.68rem;
+            padding: 3px 8px;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.4);
+            color: var(--text-muted);
+            background: rgba(15, 23, 42, 0.9);
+        }
+
+        .pill-accent {
+            border-color: rgba(249, 115, 22, 0.7);
+            background: rgba(249, 115, 22, 0.1);
+            color: #fed7aa;
+        }
+
+        .timeline {
+            margin-top: 12px;
+            padding: 9px 11px;
+            border-radius: var(--radius-md);
+            background: rgba(15, 23, 42, 0.95);
+            border: 1px dashed rgba(148, 163, 184, 0.5);
+            font-size: 0.76rem;
+            color: var(--text-muted);
+        }
+
+        .timeline-strong {
+            color: #e5e7eb;
+        }
+
+        .progress-shell {
+            position: relative;
+            margin-top: 8px;
+            height: 7px;
+            border-radius: 999px;
+            background: rgba(15, 23, 42, 0.95);
+            overflow: hidden;
+            border: 1px solid rgba(30, 64, 175, 0.5);
+        }
+
+        .progress-bar {
+            position: absolute;
+            inset: 0;
+            transform-origin: left center;
+            transform: scaleX(0.2);
+            background: linear-gradient(90deg, #22c55e, #a3e635, #facc15);
+            transition: transform 0.35s ease-out;
+        }
+
+        .error-banner {
+            margin-top: 8px;
+            padding: 7px 10px;
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(248, 113, 113, 0.8);
+            background: rgba(127, 29, 29, 0.8);
+            color: #fee2e2;
+            font-size: 0.76rem;
+            display: none;
+        }
+
+        .footer-note {
+            margin-top: 10px;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .footer-note a {
+            color: #fed7aa;
+            text-decoration: none;
+        }
+
+        .footer-note a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <div class="card">
+        <div class="header">
+            <div class="title-block">
+                <div class="logo-pill">
+                    <div class="logo-steam"></div>
+                </div>
+                <div>
+                    <div class="title-main">Калкулатор за вендинг автомат</div>
+                    <div class="title-sub">Изчисли за колко време ще се изплати инвестицията и каква печалба можеш да очакваш.</div>
+                </div>
+            </div>
+            <div class="badge">
+                <span class="badge-dot"></span>
+                Живо обновяване на резултатите
+            </div>
+        </div>
+
+        <div class="layout">
+            <!-- Лява част – входни данни -->
+            <div class="panel">
+                <div class="panel-inner">
+                    <div class="panel-title">
+                        <span>Входни данни</span>
+                        <span class="metric-tag">всички суми в лева</span>
+                    </div>
+                    <div class="panel-sub">
+                        Попълни реалистични стойности за твоя автомат. Резултатите вдясно се обновяват автоматично.
+                    </div>
+
+                    <form id="calculator-form">
+                        <div class="form-grid">
+                            <div class="field">
+                                <div class="label-row">
+                                    <label for="machine_price">Цена на автомата</label>
+                                </div>
+                                <div class="inline-input">
+                                    <input id="machine_price" name="machine_price" type="number" min="0" step="0.01"
+                                           placeholder="напр. 8000" required>
+                                    <span class="suffix">лв</span>
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <div class="label-row">
+                                    <label for="drinks_per_day">Напитки на ден</label>
+                                    <span class="label-hint">средно</span>
+                                </div>
+                                <input id="drinks_per_day" name="drinks_per_day" type="number" min="0" step="1"
+                                       placeholder="напр. 80">
+                            </div>
+
+                            <div class="field">
+                                <div class="label-row">
+                                    <label for="drink_price">Продажна цена / напитка</label>
+                                </div>
+                                <div class="inline-input">
+                                    <input id="drink_price" name="drink_price" type="number" min="0" step="0.01"
+                                           placeholder="напр. 1.50">
+                                    <span class="suffix">лв</span>
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <div class="label-row">
+                                    <label for="drink_cost">Консумативи / напитка</label>
+                                    <span class="label-hint">кафе, захар, чаши…</span>
+                                </div>
+                                <div class="inline-input">
+                                    <input id="drink_cost" name="drink_cost" type="number" min="0" step="0.01"
+                                           placeholder="напр. 0.45">
+                                    <span class="suffix">лв</span>
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <div class="label-row">
+                                    <label for="electricity_per_day">Ток на ден</label>
+                                    <span class="label-hint">ел. енергия</span>
+                                </div>
+                                <div class="inline-input">
+                                    <input id="electricity_per_day" name="electricity_per_day" type="number" min="0"
+                                           step="0.01" placeholder="напр. 2.50">
+                                    <span class="suffix">лв</span>
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <div class="label-row">
+                                    <label for="monthly_fixed_costs">Месечни фиксирани разходи</label>
+                                    <span class="label-hint">части, сервиз, наем…</span>
+                                </div>
+                                <div class="inline-input">
+                                    <input id="monthly_fixed_costs" name="monthly_fixed_costs" type="number" min="0"
+                                           step="0.01" placeholder="напр. 200">
+                                    <span class="suffix">лв / месец</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="actions">
+                            <button type="button" class="btn btn-ghost" id="btn-preset">
+                                Примерни стойности
+                            </button>
+                            <button type="submit" class="btn btn-primary">
+                                Пресметни
+                            </button>
+                        </div>
+
+                        <div class="error-banner" id="error-banner"></div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Дясна част – резултати -->
+            <div class="panel">
+                <div class="panel-inner">
+                    <div class="panel-title">
+                        <span>Резултати</span>
+                        <span class="metric-tag" id="profit-indicator">очаква се вход…</span>
+                    </div>
+                    <div class="panel-sub">
+                        Виж потенциалната си дневна, месечна и годишна печалба, както и ориентировъчния срок за
+                        възвръщане на инвестицията.
+                    </div>
+
+                    <div class="results-grid">
+                        <div class="metric">
+                            <div class="metric-inner">
+                                <div class="metric-row-top">
+                                    <span class="metric-label">Дневен оборот</span>
+                                    <span class="pill">оборот</span>
+                                </div>
+                                <div class="metric-value metric-accent" id="daily_revenue">0.00 лв</div>
+                            </div>
+                        </div>
+
+                        <div class="metric">
+                            <div class="metric-inner">
+                                <div class="metric-row-top">
+                                    <span class="metric-label">Дневна печалба</span>
+                                    <span class="pill">след разходи</span>
+                                </div>
+                                <div class="metric-value" id="daily_profit">0.00 лв</div>
+                            </div>
+                        </div>
+
+                        <div class="metric">
+                            <div class="metric-inner">
+                                <div class="metric-row-top">
+                                    <span class="metric-label">Месечна печалба</span>
+                                    <span class="pill-accent pill">нето</span>
+                                </div>
+                                <div class="metric-value" id="monthly_profit">0.00 лв</div>
+                            </div>
+                        </div>
+
+                        <div class="metric">
+                            <div class="metric-inner">
+                                <div class="metric-row-top">
+                                    <span class="metric-label">Годишна печалба</span>
+                                    <span class="pill">12 месеца</span>
+                                </div>
+                                <div class="metric-value" id="yearly_profit">0.00 лв</div>
+                            </div>
+                        </div>
+
+                        <div class="metric">
+                            <div class="metric-inner">
+                                <div class="metric-row-top">
+                                    <span class="metric-label">Срок за изплащане</span>
+                                    <span class="pill">ориентировъчно</span>
+                                </div>
+                                <div class="metric-value" id="payback_readable">–</div>
+                            </div>
+                        </div>
+
+                        <div class="metric">
+                            <div class="metric-inner">
+                                <div class="metric-row-top">
+                                    <span class="metric-label">Печалба / напитка</span>
+                                    <span class="pill">марж</span>
+                                </div>
+                                <div class="metric-value" id="profit_per_drink">0.00 лв</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pill-strip">
+                        <div class="pill" id="summary-margin">Марж: –</div>
+                        <div class="pill" id="summary-volume">Обем: –</div>
+                        <div class="pill pill-accent" id="summary-signal">Очакване: –</div>
+                    </div>
+
+                    <div class="timeline" id="timeline-text">
+                        Въведете параметри вляво, за да видите колко бързо ще се изплати автоматът.
+                    </div>
+
+                    <div class="progress-shell">
+                        <div class="progress-bar" id="progress-bar"></div>
+                    </div>
+
+                    <div class="footer-note">
+                        <span>Моделът е ориентировъчен и не заменя детайлен финансов анализ.</span>
+                        <span>Можеш да вградиш този калкулатор в блог чрез <code>&lt;iframe&gt;</code>.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function formatCurrency(value) {
+        if (!isFinite(value)) return "0.00 лв";
+        return value.toFixed(2) + " лв";
+    }
+
+    async function calculateFromForm(evt) {
+        if (evt) evt.preventDefault();
+
+        const errorBanner = document.getElementById("error-banner");
+        errorBanner.style.display = "none";
+        errorBanner.textContent = "";
+
+        const payload = {
+            machine_price: document.getElementById("machine_price").value || 0,
+            drinks_per_day: document.getElementById("drinks_per_day").value || 0,
+            drink_price: document.getElementById("drink_price").value || 0,
+            drink_cost: document.getElementById("drink_cost").value || 0,
+            electricity_per_day: document.getElementById("electricity_per_day").value || 0,
+            monthly_fixed_costs: document.getElementById("monthly_fixed_costs").value || 0,
+        };
+
+        try {
+            const res = await fetch("/api/calculate", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(payload),
+            });
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                const message = data && data.error ? data.error : "Възникна грешка при калкулацията.";
+                errorBanner.textContent = message;
+                errorBanner.style.display = "block";
+                return;
+            }
+
+            updateUI(payload, data);
+        } catch (err) {
+            errorBanner.textContent = "Неуспешна връзка със сървъра. Уверете се, че приложението работи.";
+            errorBanner.style.display = "block";
+        }
+    }
+
+    function updateUI(input, result) {
+        const dailyRevenueEl = document.getElementById("daily_revenue");
+        const dailyProfitEl = document.getElementById("daily_profit");
+        const monthlyProfitEl = document.getElementById("monthly_profit");
+        const yearlyProfitEl = document.getElementById("yearly_profit");
+        const paybackReadableEl = document.getElementById("payback_readable");
+        const profitPerDrinkEl = document.getElementById("profit_per_drink");
+        const profitIndicatorEl = document.getElementById("profit-indicator");
+        const progressBarEl = document.getElementById("progress-bar");
+        const timelineTextEl = document.getElementById("timeline-text");
+        const summaryMarginEl = document.getElementById("summary-margin");
+        const summaryVolumeEl = document.getElementById("summary-volume");
+        const summarySignalEl = document.getElementById("summary-signal");
+
+        const drinkPrice = parseFloat(input.drink_price) || 0;
+        const drinkCost = parseFloat(input.drink_cost) || 0;
+        const drinksPerDay = parseFloat(input.drinks_per_day) || 0;
+        const machinePrice = parseFloat(input.machine_price) || 0;
+
+        const profitPerDrink = drinkPrice - drinkCost;
+
+        dailyRevenueEl.textContent = formatCurrency(result.daily_revenue);
+        dailyProfitEl.textContent = formatCurrency(result.daily_profit);
+        monthlyProfitEl.textContent = formatCurrency(result.monthly_profit);
+        yearlyProfitEl.textContent = formatCurrency(result.yearly_profit);
+        paybackReadableEl.textContent = result.payback_readable || "–";
+        profitPerDrinkEl.textContent = formatCurrency(profitPerDrink);
+
+        // Цветови индикации за печалба/загуба
+        const dailyProfitVal = result.daily_profit || 0;
+        const monthlyProfitVal = result.monthly_profit || 0;
+
+        dailyProfitEl.classList.remove("metric-profit-positive", "metric-profit-negative");
+        monthlyProfitEl.classList.remove("metric-profit-positive", "metric-profit-negative");
+
+        if (monthlyProfitVal > 0) {
+            dailyProfitEl.classList.add("metric-profit-positive");
+            monthlyProfitEl.classList.add("metric-profit-positive");
+            profitIndicatorEl.textContent = "печеливш сценарий";
+            profitIndicatorEl.style.color = "#bbf7d0";
+        } else if (monthlyProfitVal < 0) {
+            dailyProfitEl.classList.add("metric-profit-negative");
+            monthlyProfitEl.classList.add("metric-profit-negative");
+            profitIndicatorEl.textContent = "рисков / губещ сценарий";
+            profitIndicatorEl.style.color = "#fecaca";
+        } else {
+            profitIndicatorEl.textContent = "на границата на рентабилност";
+            profitIndicatorEl.style.color = "#e5e7eb";
+        }
+
+        // Прогрес бар – по-бърза възвръщаемост => повече запълване
+        let paybackMonths = result.payback_months;
+        let progressFactor;
+        if (paybackMonths == null || !isFinite(paybackMonths) || paybackMonths <= 0) {
+            progressFactor = 0.15;
+        } else {
+            // 6 месеца = 100%, 12 месеца ~75%, 24 месеца ~50% и т.н.
+            const normalized = 6 / (paybackMonths + 0.01);
+            progressFactor = Math.max(0.15, Math.min(1.0, normalized));
+        }
+        progressBarEl.style.transform = "scaleX(" + progressFactor.toFixed(2) + ")";
+
+        // Обобщение
+        const marginPercent = drinkPrice > 0 ? (profitPerDrink / drinkPrice) * 100 : 0;
+        const marginText = isFinite(marginPercent) ? marginPercent.toFixed(1) : "0.0";
+        summaryMarginEl.textContent = "Марж / напитка: " + marginText + " %";
+        summaryVolumeEl.textContent = "Обем: ~" + (drinksPerDay || 0).toFixed(0) + " напитки / ден";
+
+        if (monthlyProfitVal > 0 && paybackMonths != null) {
+            if (paybackMonths <= 6) {
+                summarySignalEl.textContent = "Очакване: много бърза възвръщаемост";
+            } else if (paybackMonths <= 12) {
+                summarySignalEl.textContent = "Очакване: разумна възвръщаемост";
+            } else if (paybackMonths <= 24) {
+                summarySignalEl.textContent = "Очакване: дългосрочна инвестиция";
+            } else {
+                summarySignalEl.textContent = "Очакване: много дълъг срок за изплащане";
+            }
+        } else if (monthlyProfitVal <= 0) {
+            summarySignalEl.textContent = "Очакване: при тези параметри автоматът не се изплаща";
+        } else {
+            summarySignalEl.textContent = "Очакване: въведи повече данни";
+        }
+
+        // Текстова времева линия
+        if (paybackMonths == null || !isFinite(paybackMonths) || monthlyProfitVal <= 0) {
+            timelineTextEl.innerHTML =
+                "При текущите параметри месечната печалба е недостатъчна за изплащане на автомата. " +
+                "Опитай да увеличиш обема на продажбите, продажната цена или да оптимизираш разходите.";
+        } else {
+            const years = paybackMonths / 12.0;
+            const yearsText = years.toFixed(1);
+            timelineTextEl.innerHTML =
+                "<span class='timeline-strong'>При тези параметри автоматът ще се изплати за " +
+                yearsText +
+                " години</span> (" +
+                paybackMonths.toFixed(1) +
+                " месеца приблизително). " +
+                "След този момент цялата нетна печалба остава за теб.";
+        }
+    }
+
+    function fillPresetValues() {
+        document.getElementById("machine_price").value = "8000";
+        document.getElementById("drinks_per_day").value = "90";
+        document.getElementById("drink_price").value = "1.50";
+        document.getElementById("drink_cost").value = "0.40";
+        document.getElementById("electricity_per_day").value = "2.20";
+        document.getElementById("monthly_fixed_costs").value = "200";
+
+        calculateFromForm(null);
+    }
+
+    document.getElementById("calculator-form").addEventListener("submit", calculateFromForm);
+    document.getElementById("btn-preset").addEventListener("click", fillPresetValues);
+</script>
+</body>
+</html>
+
