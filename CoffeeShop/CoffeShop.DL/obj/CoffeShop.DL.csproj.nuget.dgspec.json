@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\serca\\Documents\\GitHub\\CoffeShop\\CoffeeShop\\CoffeShop\\CoffeShop.DL\\CoffeShop.DL.csproj": {}
+    "C:\\Users\\serca\\Documents\\GitHub\\CoffeShop\\CoffeeShop\\CoffeeShop\\CoffeShop.DL\\CoffeShop.DL.csproj": {}
   },
   "projects": {
-    "C:\\Users\\serca\\Documents\\GitHub\\CoffeShop\\CoffeeShop\\CoffeShop\\CoffeShop.DL\\CoffeShop.DL.csproj": {
+    "C:\\Users\\serca\\Documents\\GitHub\\CoffeShop\\CoffeeShop\\CoffeeShop\\CoffeShop.DL\\CoffeShop.DL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\serca\\Documents\\GitHub\\CoffeShop\\CoffeeShop\\CoffeShop\\CoffeShop.DL\\CoffeShop.DL.csproj",
+        "projectUniqueName": "C:\\Users\\serca\\Documents\\GitHub\\CoffeShop\\CoffeeShop\\CoffeeShop\\CoffeShop.DL\\CoffeShop.DL.csproj",
         "projectName": "CoffeShop.DL",
-        "projectPath": "C:\\Users\\serca\\Documents\\GitHub\\CoffeShop\\CoffeeShop\\CoffeShop\\CoffeShop.DL\\CoffeShop.DL.csproj",
+        "projectPath": "C:\\Users\\serca\\Documents\\GitHub\\CoffeShop\\CoffeeShop\\CoffeeShop\\CoffeShop.DL\\CoffeShop.DL.csproj",
         "packagesPath": "C:\\Users\\serca\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\serca\\Documents\\GitHub\\CoffeShop\\CoffeeShop\\CoffeShop\\CoffeShop.DL\\obj\\",
+        "outputPath": "C:\\Users\\serca\\Documents\\GitHub\\CoffeShop\\CoffeeShop\\CoffeeShop\\CoffeShop.DL\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -32,8 +32,8 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\Users\\serca\\Documents\\GitHub\\CoffeShop\\CoffeeShop\\CoffeShop\\CoffeShop.Models\\CoffeShop.Models.csproj": {
-                "projectPath": "C:\\Users\\serca\\Documents\\GitHub\\CoffeShop\\CoffeeShop\\CoffeShop\\CoffeShop.Models\\CoffeShop.Models.csproj"
+              "C:\\Users\\serca\\Documents\\GitHub\\CoffeShop\\CoffeeShop\\CoffeeShop\\CoffeShop.Models\\CoffeShop.Models.csproj": {
+                "projectPath": "C:\\Users\\serca\\Documents\\GitHub\\CoffeShop\\CoffeeShop\\CoffeeShop\\CoffeShop.Models\\CoffeShop.Models.csproj"
               }
             }
           }
@@ -54,6 +54,18 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
+            "Confluent.Kafka": {
+              "target": "Package",
+              "version": "[2.14.0, )"
+            },
+            "MessagePack": {
+              "target": "Package",
+              "version": "[3.1.4, )"
+            },
+            "Microsoft.Extensions.Hosting.Abstractions": {
+              "target": "Package",
+              "version": "[10.0.3, )"
+            },
             "MongoDB.Driver": {
               "target": "Package",
               "version": "[3.5.2, )"
@@ -83,14 +95,14 @@
         }
       }
     },
-    "C:\\Users\\serca\\Documents\\GitHub\\CoffeShop\\CoffeeShop\\CoffeShop\\CoffeShop.Models\\CoffeShop.Models.csproj": {
+    "C:\\Users\\serca\\Documents\\GitHub\\CoffeShop\\CoffeeShop\\CoffeeShop\\CoffeShop.Models\\CoffeShop.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\serca\\Documents\\GitHub\\CoffeShop\\CoffeeShop\\CoffeShop\\CoffeShop.Models\\CoffeShop.Models.csproj",
+        "projectUniqueName": "C:\\Users\\serca\\Documents\\GitHub\\CoffeShop\\CoffeeShop\\CoffeeShop\\CoffeShop.Models\\CoffeShop.Models.csproj",
         "projectName": "CoffeShop.Models",
-        "projectPath": "C:\\Users\\serca\\Documents\\GitHub\\CoffeShop\\CoffeeShop\\CoffeShop\\CoffeShop.Models\\CoffeShop.Models.csproj",
+        "projectPath": "C:\\Users\\serca\\Documents\\GitHub\\CoffeShop\\CoffeeShop\\CoffeeShop\\CoffeShop.Models\\CoffeShop.Models.csproj",
         "packagesPath": "C:\\Users\\serca\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\serca\\Documents\\GitHub\\CoffeShop\\CoffeeShop\\CoffeShop\\CoffeShop.Models\\obj\\",
+        "outputPath": "C:\\Users\\serca\\Documents\\GitHub\\CoffeShop\\CoffeeShop\\CoffeeShop\\CoffeShop.Models\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -129,6 +141,14 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
+            "Confluent.Kafka": {
+              "target": "Package",
+              "version": "[2.14.0, )"
+            },
+            "MessagePack": {
+              "target": "Package",
+              "version": "[3.1.4, )"
+            },
             "Microsoft.Extensions.DependencyInjection": {
               "target": "Package",
               "version": "[9.0.11, )"

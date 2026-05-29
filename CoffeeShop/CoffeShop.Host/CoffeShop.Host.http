@@ -1,6 +1,16 @@
-@CoffeShop_HostAddress = http://localhost:5059
+@CoffeShop.Host_HostAddress = http://localhost:5059
 
-GET {{CoffeShop_HostAddress}}/healthz
+GET {{CoffeShop.Host_HostAddress}}/healthz
+Accept: application/json
+
+###
+
+GET {{CoffeShop.Host_HostAddress}}/api/Coffees/GetAll
+Accept: application/json
+
+###
+
+GET {{CoffeShop.Host_HostAddress}}/api/Customer/GetAllCustomers
 Accept: application/json
 
 ###

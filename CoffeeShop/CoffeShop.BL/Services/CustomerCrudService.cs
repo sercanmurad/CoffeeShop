@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using CoffeShop.BL.Interfaces;
 using CoffeShop.DL.Interfaces;
 using CoffeShop.Models.Dto;
@@ -13,24 +16,28 @@ namespace CoffeShop.BL.Services
             _customerRepository = customerRepository;
         }
 
-        public void AddCustomer(Customer customer)
+        public async Task Add(Customer? customer)
         {
-            _customerRepository.AddCustomer(customer);
+            if (customer == null) return;
+
+            customer.Id = Guid.NewGuid();
+
+            await _customerRepository.Add(customer);
         }
 
-        public void DeleteCustomer(Guid id)
+        public async Task<List<Customer>> GetAll()
         {
-            _customerRepository.DeleteCustomer(id);
+            return await _customerRepository.GetAll();
         }
 
-        public List<Customer> GetAllCustomers()
+        public async Task<Customer?> GetById(Guid id)
         {
-            return _customerRepository.GetAllCustomers();
+            return await _customerRepository.GetById(id);
         }
 
-        public Customer? GetById(Guid id)
+        public async Task Delete(Guid id)
         {
-            return _customerRepository.GetById(id);
+            await _customerRepository.Delete(id);
         }
     }
 }

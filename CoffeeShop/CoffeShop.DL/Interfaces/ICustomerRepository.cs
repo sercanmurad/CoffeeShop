@@ -1,12 +1,18 @@
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using CoffeShop.Models.Dto;
 
 namespace CoffeShop.DL.Interfaces
 {
     public interface ICustomerRepository
     {
-        void AddCustomer(Customer customer);
-        void DeleteCustomer(Guid id);
-        List<Customer> GetAllCustomers();
-        Customer? GetById(Guid id);
+        Task Add(Customer? customer);
+
+        Task<List<Customer>> GetAll();
+
+        Task<Customer?> GetById(Guid id);
+
+        Task Delete(Guid id);
     }
 }

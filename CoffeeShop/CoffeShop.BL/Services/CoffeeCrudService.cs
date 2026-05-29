@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using CoffeShop.BL.Interfaces;
 using CoffeShop.DL.Interfaces;
 using CoffeShop.Models.Dto;
@@ -13,7 +16,7 @@ namespace CoffeShop.BL.Services
             _coffeeRepository = coffeeRepository;
         }
 
-        public void AddCoffee(Coffee coffee)
+        public async Task AddCoffeeAsync(Coffee coffee)
         {
             if (coffee == null) return;
 
@@ -22,22 +25,22 @@ namespace CoffeShop.BL.Services
                 coffee.Id = Guid.NewGuid();
             }
 
-            _coffeeRepository.AddCoffee(coffee);
+            await _coffeeRepository.AddCoffeeAsync(coffee);
         }
 
-        public void DeleteCoffee(Guid id)
+        public async Task DeleteCoffeeAsync(Guid id)
         {
-            _coffeeRepository.DeleteCoffee(id);
+            await _coffeeRepository.DeleteCoffeeAsync(id);
         }
 
-        public List<Coffee> GetAllCoffees()
+        public async Task<List<Coffee>> GetAllCoffeesAsync()
         {
-            return _coffeeRepository.GetAllCoffees();
+            return await _coffeeRepository.GetAllCoffeesAsync();
         }
 
-        public Coffee? GetById(Guid id)
+        public async Task<Coffee?> GetByIdAsync(Guid id)
         {
-            return _coffeeRepository.GetById(id);
+            return await _coffeeRepository.GetByIdAsync(id);
         }
     }
 }

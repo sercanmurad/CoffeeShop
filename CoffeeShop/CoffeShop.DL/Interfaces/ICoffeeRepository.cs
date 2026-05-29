@@ -1,15 +1,18 @@
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using CoffeShop.Models.Dto;
 
 namespace CoffeShop.DL.Interfaces
 {
     public interface ICoffeeRepository
     {
-        void AddCoffee(Coffee coffee);
+        Task AddCoffeeAsync(Coffee coffee);
 
-        void DeleteCoffee(Guid? id);
+        Task DeleteCoffeeAsync(Guid? id);
 
-        List<Coffee> GetAllCoffees();
+        Task<List<Coffee>> GetAllCoffeesAsync();
 
-        Coffee? GetById(Guid? id);
+        Task<Coffee?> GetByIdAsync(Guid? id);
     }
 }

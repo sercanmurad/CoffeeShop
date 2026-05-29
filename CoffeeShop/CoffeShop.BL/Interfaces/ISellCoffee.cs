@@ -1,9 +1,11 @@
+using System;
+using System.Threading.Tasks;
 using CoffeShop.Models.Responses;
 
 namespace CoffeShop.BL.Interfaces
 {
-    internal interface ISellCoffee
+    public interface ISellCoffee
     {
-        SellCoffeeResult Sell(Guid coffeeId, Guid customerId);
+        Task<SellCoffeeResult> Sell(Guid coffeeId, Guid customerId);
     }
 }
