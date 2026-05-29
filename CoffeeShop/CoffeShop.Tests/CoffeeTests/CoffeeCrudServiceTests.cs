@@ -1,3 +1,6 @@
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 using CoffeShop.BL.Services;
 using CoffeShop.DL.Interfaces;
 using CoffeShop.Models.Dto;
@@ -16,7 +19,7 @@ namespace CoffeShop.Tests.CoffeeTests
         }
 
         [Fact]
-        public void AddCoffeeTest_Ok()
+        public async Task AddCoffeeTest_Ok()
         {
             var expectedCoffeeCount = CoffeeMockedData.Coffees.Count + 1;
             var id = Guid.NewGuid();
@@ -24,20 +27,21 @@ namespace CoffeShop.Tests.CoffeeTests
             {
                 Id = id,
                 Name = "Americano",
-                RoastYear = 2023,
-                BasePrice = 3.00m
+                RoastYear = 2023
             };
 
             _coffeeRepositoryMock
-                .Setup(repo => repo.AddCoffee(coffee))
-                .Callback(() =>
-                {
-                    CoffeeMockedData.Coffees.Add(coffee);
-                });
+               .Setup(repo => repo.AddCoffeeAsync(coffee))
+               .Callback(() =>
+               {
+                   CoffeeMockedData.Coffees.Add(coffee);
+               })
+               .Returns(Task.CompletedTask);
 
             var service = new CoffeeCrudService(_coffeeRepositoryMock.Object);
 
-            service.AddCoffee(coffee);
+            await service.AddCoffeeAsync(coffee);
+
             var resultCoffee = CoffeeMockedData.Coffees.FirstOrDefault(c => c.Id == id);
 
             Assert.NotNull(resultCoffee);

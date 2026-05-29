@@ -1,14 +1,10 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\serca\\Documents\\GitHub\\CoffeShop\\CoffeeShop\\CoffeShop\\",
+  "WorkspaceRootPath": "C:\\Users\\serca\\Documents\\GitHub\\CoffeShop\\CoffeeShop\\CoffeeShop\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D0EDB9B0-8B8D-4601-A79A-0B3DA09F4B9C}|CoffeShop.Tests\\CoffeShop.Tests.csproj|c:\\users\\serca\\documents\\github\\coffeshop\\coffeeshop\\coffeshop\\coffeshop.tests\\mockdata\\coffeemockeddata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D0EDB9B0-8B8D-4601-A79A-0B3DA09F4B9C}|CoffeShop.Tests\\CoffeShop.Tests.csproj|c:\\users\\serca\\documents\\github\\coffeshop\\coffeeshop\\coffeeshop\\coffeshop.tests\\mockdata\\coffeemockeddata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D0EDB9B0-8B8D-4601-A79A-0B3DA09F4B9C}|CoffeShop.Tests\\CoffeShop.Tests.csproj|solutionrelative:coffeshop.tests\\mockdata\\coffeemockeddata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D0EDB9B0-8B8D-4601-A79A-0B3DA09F4B9C}|CoffeShop.Tests\\CoffeShop.Tests.csproj|c:\\users\\serca\\documents\\github\\coffeshop\\coffeeshop\\coffeshop\\coffeshop.tests\\coffeetests\\sellcoffeetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D0EDB9B0-8B8D-4601-A79A-0B3DA09F4B9C}|CoffeShop.Tests\\CoffeShop.Tests.csproj|solutionrelative:coffeshop.tests\\coffeetests\\sellcoffeetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -24,26 +20,13 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "CoffeeMockedData.cs",
-              "DocumentMoniker": "C:\\Users\\serca\\Documents\\GitHub\\CoffeShop\\CoffeeShop\\CoffeShop\\CoffeShop.Tests\\MockData\\CoffeeMockedData.cs",
+              "DocumentMoniker": "C:\\Users\\serca\\Documents\\GitHub\\CoffeShop\\CoffeeShop\\CoffeeShop\\CoffeShop.Tests\\MockData\\CoffeeMockedData.cs",
               "RelativeDocumentMoniker": "CoffeShop.Tests\\MockData\\CoffeeMockedData.cs",
-              "ToolTip": "C:\\Users\\serca\\Documents\\GitHub\\CoffeShop\\CoffeeShop\\CoffeShop\\CoffeShop.Tests\\MockData\\CoffeeMockedData.cs",
+              "ToolTip": "C:\\Users\\serca\\Documents\\GitHub\\CoffeShop\\CoffeeShop\\CoffeeShop\\CoffeShop.Tests\\MockData\\CoffeeMockedData.cs",
               "RelativeToolTip": "CoffeShop.Tests\\MockData\\CoffeeMockedData.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-27T14:29:11.014Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "SellCoffeeTests.cs",
-              "DocumentMoniker": "C:\\Users\\serca\\Documents\\GitHub\\CoffeShop\\CoffeeShop\\CoffeShop\\CoffeShop.Tests\\CoffeeTests\\SellCoffeeTests.cs",
-              "RelativeDocumentMoniker": "CoffeShop.Tests\\CoffeeTests\\SellCoffeeTests.cs",
-              "ToolTip": "C:\\Users\\serca\\Documents\\GitHub\\CoffeShop\\CoffeeShop\\CoffeShop\\CoffeShop.Tests\\CoffeeTests\\SellCoffeeTests.cs",
-              "RelativeToolTip": "CoffeShop.Tests\\CoffeeTests\\SellCoffeeTests.cs",
-              "ViewState": "AgIAADAAAAAAAAAAAAAYwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-27T14:28:54.657Z",
               "EditorCaption": ""
             }
           ]

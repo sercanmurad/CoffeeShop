@@ -1,3 +1,7 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using CoffeShop.DL.Interfaces;
 using CoffeShop.DL.LocalDb;
 using CoffeShop.Models.Dto;
@@ -7,24 +11,27 @@ namespace CoffeShop.DL.Repositories
     [Obsolete($"Please use: {nameof(CoffeeMongoRepository)}")]
     internal class CoffeeLocalRepository : ICoffeeRepository
     {
-        public void AddCoffee(Coffee coffee)
+        public Task AddCoffeeAsync(Coffee coffee)
         {
             StaticDb.Coffees.Add(coffee);
+            return Task.CompletedTask;
         }
 
-        public void DeleteCoffee(Guid? id)
+        public Task DeleteCoffeeAsync(Guid? id)
         {
             StaticDb.Coffees.RemoveAll(c => c.Id == id);
+            return Task.CompletedTask;
         }
 
-        public List<Coffee> GetAllCoffees()
+        public Task<List<Coffee>> GetAllCoffeesAsync()
         {
-            return StaticDb.Coffees;
+            return Task.FromResult(StaticDb.Coffees);
         }
 
-        public Coffee? GetById(Guid? id)
+        public Task<Coffee?> GetByIdAsync(Guid? id)
         {
-            return StaticDb.Coffees.FirstOrDefault(c => c.Id == id);
+            var coffee = StaticDb.Coffees.FirstOrDefault(c => c.Id == id);
+            return Task.FromResult(coffee);
         }
     }
 }

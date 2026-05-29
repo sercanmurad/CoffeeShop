@@ -58,9 +58,61 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "CoffeShop.Host.Controllers.CustomersController",
+    "ContainingType": "CoffeShop.Host.Controllers.CoffeesController",
+    "Method": "SellCoffee",
+    "RelativePath": "api/Coffees/SellCoffee",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "coffeeId",
+        "Type": "System.Guid",
+        "IsRequired": false
+      },
+      {
+        "Name": "customerId",
+        "Type": "System.Guid",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CoffeShop.Host.Controllers.CustomerController",
+    "Method": "AddCustomer",
+    "RelativePath": "api/Customer/AddCustomer",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "CoffeShop.Models.Requests.AddCustomerRequest",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 201
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      }
+    ]
+  },
+  {
+    "ContainingType": "CoffeShop.Host.Controllers.CustomerController",
     "Method": "DeleteCustomer",
-    "RelativePath": "api/Customers",
+    "RelativePath": "api/Customer/DeleteCustomer",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -71,38 +123,48 @@
         "IsRequired": false
       }
     ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "CoffeShop.Host.Controllers.CustomersController",
-    "Method": "AddCustomer",
-    "RelativePath": "api/Customers",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
+    "ReturnTypes": [
       {
-        "Name": "customer",
-        "Type": "CoffeShop.Models.Dto.Customer",
-        "IsRequired": false
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
       }
-    ],
-    "ReturnTypes": []
+    ]
   },
   {
-    "ContainingType": "CoffeShop.Host.Controllers.CustomersController",
-    "Method": "GetAll",
-    "RelativePath": "api/Customers/GetAll",
+    "ContainingType": "CoffeShop.Host.Controllers.CustomerController",
+    "Method": "GetAllCustomers",
+    "RelativePath": "api/Customer/GetAllCustomers",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 204
+      }
+    ]
   },
   {
-    "ContainingType": "CoffeShop.Host.Controllers.CustomersController",
-    "Method": "GetById",
-    "RelativePath": "api/Customers/GetById",
+    "ContainingType": "CoffeShop.Host.Controllers.CustomerController",
+    "Method": "GetCustomerById",
+    "RelativePath": "api/Customer/GetCustomerById",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -113,6 +175,30 @@
         "IsRequired": false
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      }
+    ]
   }
 ]

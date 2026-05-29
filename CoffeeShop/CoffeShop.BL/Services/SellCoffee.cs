@@ -1,5 +1,8 @@
+using System;
+using System.Threading.Tasks;
 using CoffeShop.BL.Interfaces;
 using CoffeShop.DL.Interfaces;
+using CoffeShop.DL.Kafka;
 using CoffeShop.Models.Responses;
 
 namespace CoffeShop.BL.Services
@@ -8,31 +11,38 @@ namespace CoffeShop.BL.Services
     {
         private readonly ICoffeeCrudService _coffeeCrudService;
         private readonly ICustomerRepository _customerRepository;
+        private readonly GenericKafkaProducer<string, SellCoffeeResult> _producer;
 
-        public SellCoffee(ICoffeeCrudService coffeeCrudService, ICustomerRepository customerRepository)
+        public SellCoffee(
+            ICoffeeCrudService coffeeCrudService,
+            ICustomerRepository customerRepository,
+            GenericKafkaProducer<string, SellCoffeeResult> producer)
         {
             _coffeeCrudService = coffeeCrudService;
             _customerRepository = customerRepository;
+            _producer = producer;
         }
 
-        public SellCoffeeResult Sell(Guid coffeeId, Guid customerId)
+        public async Task<SellCoffeeResult> Sell(Guid coffeeId, Guid customerId)
         {
-            var coffee = _coffeeCrudService.GetById(coffeeId);
-            var customer = _customerRepository.GetById(customerId);
+            var coffee = await _coffeeCrudService.GetByIdAsync(coffeeId);
+            var customer = await _customerRepository.GetById(customerId);
 
             if (coffee == null || customer == null)
-            {
-                throw new ArgumentException($"Coffee with ID {coffeeId} not found.");
-            }
+                throw new ArgumentException("Coffee or Customer not found.");
 
             var price = coffee.BasePrice - customer.Discount;
 
-            return new SellCoffeeResult
+            var result = new SellCoffeeResult
             {
                 Price = price,
                 Coffee = coffee,
                 Customer = customer
             };
+
+            await _producer.ProduceAsync(coffeeId.ToString(), result);
+
+            return result;
         }
     }
 }

@@ -11,4 +11,9 @@
 		<InternalsVisibleTo Include="CoffeShop.Tests" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <PackageReference Include="Confluent.Kafka" Version="2.14.0" />
+	  <PackageReference Include="MessagePack" Version="3.1.4" />
+	</ItemGroup>
+
 </Project>

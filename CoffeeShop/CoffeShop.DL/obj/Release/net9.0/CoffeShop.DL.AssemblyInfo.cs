@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CoffeShop.DL")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+79a476753b87f896e00199de755f507a10e1b52b")]
 [assembly: System.Reflection.AssemblyProductAttribute("CoffeShop.DL")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CoffeShop.DL")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

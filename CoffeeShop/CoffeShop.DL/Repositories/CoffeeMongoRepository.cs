@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using CoffeShop.DL.Interfaces;
 using CoffeShop.Models.Configurations;
 using CoffeShop.Models.Dto;
@@ -25,13 +28,13 @@ namespace CoffeShop.DL.Repositories
             _coffeesCollection = database.GetCollection<Coffee>($"{nameof(Coffee)}s");
         }
 
-        public void AddCoffee(Coffee coffee)
+        public async Task AddCoffeeAsync(Coffee coffee)
         {
             if (coffee == null) return;
 
             try
             {
-                _coffeesCollection.InsertOne(coffee);
+                await _coffeesCollection.InsertOneAsync(coffee);
             }
             catch (Exception e)
             {
@@ -39,13 +42,13 @@ namespace CoffeShop.DL.Repositories
             }
         }
 
-        public void DeleteCoffee(Guid? id)
+        public async Task DeleteCoffeeAsync(Guid? id)
         {
             if (id == null || id == Guid.Empty) return;
 
             try
             {
-                var result = _coffeesCollection.DeleteOne(c => c.Id == id);
+                var result = await _coffeesCollection.DeleteOneAsync(c => c.Id == id);
 
                 if (result.DeletedCount == 0)
                 {
@@ -54,26 +57,26 @@ namespace CoffeShop.DL.Repositories
             }
             catch (Exception e)
             {
-                _logger.LogError($"Error in method {nameof(DeleteCoffee)}:{e.Message}-{e.StackTrace}");
+                _logger.LogError($"Error in method {nameof(DeleteCoffeeAsync)}:{e.Message}-{e.StackTrace}");
             }
         }
 
-        public List<Coffee> GetAllCoffees()
+        public async Task<List<Coffee>> GetAllCoffeesAsync()
         {
-            return _coffeesCollection.Find(_ => true).ToList();
+            return await _coffeesCollection.Find(_ => true).ToListAsync();
         }
 
-        public Coffee? GetById(Guid? id)
+        public async Task<Coffee?> GetByIdAsync(Guid? id)
         {
             if (id == null || id == Guid.Empty) return default;
 
             try
             {
-                return _coffeesCollection.Find(c => c.Id == id).FirstOrDefault();
+                return await _coffeesCollection.Find(c => c.Id == id).FirstOrDefaultAsync();
             }
             catch (Exception e)
             {
-                _logger.LogError($"Error in method {nameof(GetById)}:{e.Message}-{e.StackTrace}");
+                _logger.LogError($"Error in method {nameof(GetByIdAsync)}:{e.Message}-{e.StackTrace}");
             }
 
             return default;
